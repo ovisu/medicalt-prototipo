@@ -1,0 +1,10 @@
+{
+  "name": "medicalt-landing",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Landing page institucional da Medicalt, sem dependências de execução.",
+  "scripts": {
+    "dev": "node scripts/serve.mjs",
+    "check": "node scripts/check.mjs"
+  }
+}

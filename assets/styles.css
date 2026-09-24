@@ -169,8 +169,6 @@ form .cta { width: 100%; }
 .message { margin-top: .75rem; color: var(--wine); font-size: .875rem; overflow-wrap: anywhere; }
 .message:empty { display: none; }
 .email-link { text-decoration: underline; text-underline-offset: .2em; overflow-wrap: anywhere; }
-#email-preview { margin-top: 1.5rem; padding-top: 1.5rem; border-top: 1px solid var(--line); }
-#email-body { white-space: pre-wrap; overflow-wrap: anywhere; font: .875rem/1.7 var(--font-body); background: var(--paper); padding: 1rem; }
 footer { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1.5rem; padding-block: 2rem; border-top: 1px solid var(--line); }
 footer p { color: var(--muted); font-size: .8125rem; }
 .top-link { display: inline-flex; align-items: center; min-height: 2.75rem; font-size: .875rem; }
@@ -219,3 +217,12 @@ footer p { color: var(--muted); font-size: .8125rem; }
   .solutions p,.solutions .eyebrow,.solution-row > span { color: #333; }
   article { break-inside: avoid; }
 }
+
+/* Contact delivery and confirmation page. */
+.form-honeypot { display: none; }
+form[aria-busy="true"] .cta { opacity: .7; cursor: progress; }
+.confirmation-main { min-height: 70vh; display: grid; place-items: center; }
+.confirmation-card { width: min(100%, 42rem); padding: clamp(1.5rem,5vw,3.5rem); border: 1px solid var(--line); border-radius: .75rem; background: white; }
+.confirmation-card h1 { font-size: clamp(2rem,5vw,3rem); }
+.confirmation-card > p:not(.eyebrow) { margin-block: 1.5rem; color: var(--muted); }
+.confirmation-card .cta { margin-top: .5rem; }

@@ -13,6 +13,8 @@ const codeFiles = [
   path.join(root, 'index.html'),
   path.join(root, 'assets', 'config.js'),
   path.join(root, 'assets', 'main.js'),
+  path.join(root, 'assets', 'contact.js'),
+  path.join(root, 'obrigado.html'),
   path.join(root, 'assets', 'styles.css'),
   fileURLToPath(import.meta.url),
   fileURLToPath(new URL('./serve.mjs', import.meta.url)),
@@ -96,7 +98,7 @@ for (const match of html.matchAll(/<img\b[^>]*>/g)) {
   assert.match(match[0], /\bheight="\d+"/);
 }
 
-for (const name of ['config.js', 'main.js']) {
+for (const name of ['config.js', 'main.js', 'contact.js', 'team.js']) {
   const check = spawnSync(
     process.execPath,
     ['--check', path.join(root, 'assets', name)],
@@ -105,7 +107,7 @@ for (const name of ['config.js', 'main.js']) {
   assert.equal(check.status, 0, check.stderr);
 }
 
-// Exercise contact preparation without opening an e-mail app or sending data.
+// Exercise navigation without browser side effects.
 const makeElement = () => ({
   hidden: false,
   disabled: true,
@@ -201,44 +203,72 @@ menu.events.click();
 assert.equal(elements['main-nav'].hidden, false);
 assert.equal(menu.attrs['aria-expanded'], 'true');
 
-elements['contact-form'].events.submit({ preventDefault() {} });
+// Exercise native delivery configuration and validation without network traffic.
+const contactCode = await readFile(path.join(root, 'assets/contact.js'), 'utf8');
+assert.match(html, /action="https:\/\/formsubmit\.co\/ovisu666@gmail\.com" method="POST"/);
+assert.doesNotMatch(html, /_captcha|mailto:|email-preview/);
+assert.match(html, /name="_honey"/);
+assert.match(html, /name="email"[^>]*type="email"/);
 
-const mail = new URL(elements['open-email'].href);
-assert.equal(elements['contact-submit'].textContent, 'Revisar mensagem ↗');
-assert.match(elements['contact-status'].textContent, /Você confirma o envio por lá\./);
-assert.match(elements['contact-status'].textContent, /Não inclua dados de pacientes\./);
-assert.match(elements['email-body'].textContent, /Olá, equipe Medicalt\./);
-assert.match(elements['email-body'].textContent, /Instituição:/);
-assert.equal(elements['email-preview'].hidden, false);
-assert.equal(windowMock.location.href, '', 'Review must not open mail automatically');
-assert.equal(mail.protocol, 'mailto:');
-assert.equal(mail.pathname, windowMock.MEDICALT_CONFIG.contactEmail);
-assert.match(mail.searchParams.get('body'), /João & Maria/);
-assert.match(mail.searchParams.get('body'), /Hospital A\/B/);
-assert.equal(mail.searchParams.size, 2, 'Fields must not inject URL parameters');
+function contactHarness(href, email = 'ovisu666@gmail.com') {
+  const inputs = Object.fromEntries(Object.entries({
+    name: '  João & Maria  ', company: ' Hospital A/B ', email: ' teste@example.com ',
+    interest: 'Estruturação de UTI', _subject: '', _next: '', _honey: '',
+  }).map(([key, value]) => [key, { value }]));
+  const form = makeElement();
+  form.elements = { namedItem: (name) => inputs[name] };
+  form.reportValidity = () => Boolean(inputs.name.value && inputs.company.value && inputs.email.value.includes('@'));
+  const button = makeElement();
+  const status = makeElement();
+  const handlers = {};
+  const page = {
+    location: new URL(href),
+    MEDICALT_CONFIG: { contactEmail: email, contactSubject: 'Parceria hospitalar — Medicalt' },
+    addEventListener: (name, handler) => { handlers[name] = handler; },
+  };
+  vm.runInNewContext(contactCode, {
+    window: page, URL,
+    document: { getElementById: (id) => ({ 'contact-form': form, 'contact-submit': button, 'form-message': status })[id] },
+  });
+  return { form, button, status, inputs, handlers, send() {
+    let blocked = false;
+    form.events.submit({ preventDefault() { blocked = true; } });
+    return blocked;
+  } };
+}
 
-windowMock.location.href = '';
-fields.name = '   ';
-elements['contact-form'].events.submit({ preventDefault() {} });
-assert.equal(windowMock.location.href, '', 'Whitespace-only name must not proceed');
-assert.equal(elements['email-preview'].hidden, true);
+const delivery = contactHarness('https://ovisu.github.io/medicalt-prototipo/#mt-contact');
+assert.equal(delivery.form.action, 'https://formsubmit.co/ovisu666@gmail.com');
+assert.equal(delivery.inputs._next.value, 'https://ovisu.github.io/medicalt-prototipo/obrigado.html');
+assert.equal(delivery.inputs._subject.value, 'Parceria hospitalar — Medicalt');
+assert.equal(delivery.button.disabled, false);
+assert.equal(delivery.send(), false, 'Valid data must allow native POST');
+assert.equal(delivery.inputs.name.value, 'João & Maria');
+assert.equal(delivery.inputs.company.value, 'Hospital A/B');
+assert.equal(delivery.button.disabled, true);
+assert.equal(delivery.form.attrs['aria-busy'], 'true');
+assert.doesNotMatch(delivery.status.textContent, /Mensagem enviada/);
+assert.equal(delivery.send(), true, 'Block duplicate submissions');
+delivery.handlers.pageshow();
+assert.equal(delivery.button.disabled, false, 'Back must restore submit button');
+assert.equal(delivery.status.textContent, '');
+delivery.inputs.name.value = '   ';
+assert.equal(delivery.send(), true, 'Block whitespace-only required fields');
+assert.equal(delivery.button.disabled, false);
+delivery.inputs.name.value = 'Teste';
+delivery.inputs._honey.value = 'spam';
+assert.equal(delivery.send(), true, 'Honeypot prevents automated submissions');
+const local = contactHarness('http://127.0.0.1:4174/index.html#mt-contact');
+assert.equal(local.inputs._next.value, 'http://127.0.0.1:4174/obrigado.html');
+const broken = contactHarness('https://example.com', 'wrong?email');
+assert.equal(broken.button.disabled, true);
+assert.equal(broken.send(), true);
+const disk = contactHarness('file:///site/index.html');
+assert.equal(disk.button.disabled, true);
+assert.equal(disk.send(), true);
+const thanks = await readFile(path.join(root, 'obrigado.html'), 'utf8');
+assert.match(thanks, /href="index.html"/);
+assert.match(thanks, /name="robots" content="noindex"/);
 
-fields.name = 'Teste';
-fields.company = '<script>alert(1)</script> & assunto=outro';
-elements['contact-form'].events.submit({ preventDefault() {} });
-assert.match(elements['email-body'].textContent, /<script>/);
-const reviewed = new URL(elements['open-email'].href);
-assert.equal(reviewed.searchParams.size, 2);
-assert.match(reviewed.searchParams.get('body'), /assunto=outro/);
-elements['contact-form'].events.input();
-assert.equal(elements['email-preview'].hidden, true, 'Editing invalidates old preview');
-
-console.log(
-  [
-    'PASS: HTML structure, local assets, anchors, image dimensions,',
-    'JavaScript syntax, mobile menu state and safely encoded contact flow.',
-  ].join(' '),
-);
-console.log(
-  'This check does not replace visual browser, screen-reader or e-mail delivery testing.',
-);
+console.log('PASS: HTML, assets, syntax, navigation, FormSubmit configuration, validation, duplicate prevention and Back recovery.');
+console.log('No network submissions were made. Provider activation, CAPTCHA and inbox delivery require an end-to-end check.');

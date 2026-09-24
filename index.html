@@ -23,6 +23,7 @@
     <script defer="" src="assets/main.js">
     </script>
     <script defer src="assets/team.js"></script>
+    <script defer src="assets/contact.js"></script>
   </head>
   <body>
     <div id="medicalt">
@@ -470,7 +471,11 @@
               Conte o que sua instituição precisa. A Medicalt está pronta para conversar sobre a estruturação e a gestão das suas equipes.
             </p>
           </div>
-          <form aria-describedby="contact-status" id="contact-form">
+          <form action="https://formsubmit.co/ovisu666@gmail.com" method="POST" aria-describedby="contact-status" id="contact-form">
+            <input type="hidden" name="_subject" value="Parceria hospitalar — Medicalt">
+            <input type="hidden" name="_template" value="table">
+            <input type="hidden" name="_next" value="https://ovisu.github.io/medicalt-prototipo/obrigado.html">
+            <input type="text" name="_honey" class="form-honeypot" tabindex="-1" autocomplete="off" aria-hidden="true">
             <label>
               Seu nome
               <input autocomplete="name" maxlength="120" name="name" placeholder="Como podemos chamar você?" required="" />
@@ -509,35 +514,13 @@
                 </option>
               </select>
             </label>
-            <button class="cta" disabled="" id="contact-submit" type="submit">
-              Revisar mensagem
-              <span aria-hidden="true">
-                ↗
-              </span>
+            <button class="cta" id="contact-submit" type="submit">
+              Enviar mensagem <span aria-hidden="true">↗</span>
             </button>
             <p class="form-note" id="contact-status">
-              O formulário precisa de JavaScript para preparar sua mensagem. 
+              Ao enviar, seus dados serão encaminhados à Medicalt pelo FormSubmit para responder ao contato. Não inclua dados de pacientes.
             </p>
-            <p aria-atomic="true" aria-live="polite" class="message" id="form-message" role="status" >
-            </p>
-            <div id="email-preview" hidden>
-              <h3>
-                Sua mensagem está pronta para revisão
-              </h3>
-              <pre id="email-body">
-              </pre>
-              <a class="cta" id="open-email" href="mailto:ovisu666@gmail.com">
-                Abrir no aplicativo de e-mail ↗
-              </a>
-              <p class="form-note">
-                O envio será confirmado por você no aplicativo de e-mail. Se ele não abrir, configure um aplicativo de e-mail no seu dispositivo e tente novamente.
-              </p>
-            </div>
-            <noscript>
-              <p class="form-note">
-                O formulário precisa de JavaScript para abrir o canal de contato.
-              </p>
-            </noscript>
+            <p aria-atomic="true" aria-live="polite" class="message" id="form-message" role="status"></p>
           </form>
         </section>
       </main>

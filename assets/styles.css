@@ -14,7 +14,7 @@
   --section-space: clamp(3.5rem, 7vw, 6.5rem);
 }
 *, *::before, *::after { box-sizing: border-box; }
-html { scroll-padding-top: 2rem; }
+html { scroll-padding-top: 2rem; scroll-behavior: smooth;}
 body { margin: 0; background: var(--paper); color: var(--ink); font: 1rem/1.7 var(--font-body); }
 h1,h2,h3,p,figure { margin: 0; }
 h1,h2,h3 { font-family: var(--font-heading); font-weight: 500; text-wrap: balance; }

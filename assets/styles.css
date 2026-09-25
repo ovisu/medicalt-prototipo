@@ -110,8 +110,10 @@ details p { margin: 0 0 1.5rem 2rem; color: var(--muted); font-size: .9375rem; }
 .step p { color: var(--muted); font-size: .9375rem; }
 .team { border-bottom: 1px solid var(--line); }
 .team .team-intro { margin-top: 0; color: var(--ink); font-size: 1.25rem; }
-.team .text-link { margin-top: 1rem; }
-.team-trigger { border: 0; padding: 0; background: transparent; text-align: left; }
+.team-trigger { position: relative; margin-top: 1rem; max-width: 100%; border: 0; padding: 0; background: transparent; font-size: clamp(1.125rem, 1.8vw, 1.25rem); font-weight: 600; text-align: left; text-decoration: none; }
+.team-trigger::after { content: ""; position: absolute; right: 0; bottom: .2em; left: 0; height: 1px; background: currentColor; }
+.team-trigger:hover::after { height: 2px; }
+.team-trigger span[aria-hidden="true"] { font-size: 1.25em; line-height: 1; }
 html { scrollbar-gutter: stable; }
 html.team-dialog-open { overflow: hidden; }
 .team-dialog {

@@ -43,6 +43,30 @@
   compactServices.addEventListener('change', syncServices);
   syncServices();
 
+  const heroActions = document.getElementById('hero-actions');
+  if (heroActions) {
+    const primaryAction = heroActions.querySelector('.cta');
+    const servicesAction = heroActions.querySelector('.text-link');
+    function syncHeroActions() {
+      servicesAction.hidden = false;
+      const primaryBounds = primaryAction.getBoundingClientRect();
+      const servicesBounds = servicesAction.getBoundingClientRect();
+      const besidePrimary = servicesBounds.left >= primaryBounds.right
+        && servicesBounds.top < primaryBounds.bottom;
+      servicesAction.hidden = !besidePrimary;
+      if (!besidePrimary && document.activeElement === servicesAction) {
+        primaryAction.focus({ preventScroll: true });
+      }
+    }
+    syncHeroActions();
+    if (window.ResizeObserver) {
+      new window.ResizeObserver(syncHeroActions).observe(heroActions);
+    } else {
+      window.addEventListener('resize', syncHeroActions);
+    }
+    document.fonts?.ready.then(syncHeroActions);
+  }
+
   document.getElementById('current-year').textContent = String(
     new Date().getFullYear(),
   );

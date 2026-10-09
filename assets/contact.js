@@ -22,7 +22,7 @@
   function resetSending() {
     sending = false;
     submit.disabled = !validEmail || !served;
-    submit.textContent = 'Enviar mensagem ↗';
+    submit.textContent = 'Enviar mensagem';
     form.setAttribute('aria-busy', 'false');
     message.textContent = !served
       ? 'Abra o site pelo servidor local ou pelo endereço publicado para enviar sua mensagem.'

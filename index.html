@@ -13,7 +13,7 @@
     <title>
       Medicalt Serviços em Saúde | Gestão de corpo clínico
     </title>
-    <link href="assets/logo-medicalt.png" rel="icon" type="image/png"/>
+    <link href="assets/simbolo-medicalt.svg" rel="icon" type="image/svg+xml">
     <link href="https://fonts.googleapis.com" rel="preconnect"/>
     <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet" />
@@ -23,6 +23,7 @@
     <script defer="" src="assets/main.js">
     </script>
     <script defer src="assets/team.js"></script>
+    <script defer src="assets/institutions.js"></script>
     <script defer src="assets/contact.js"></script>
   </head>
   <body>
@@ -32,15 +33,7 @@
       </a>
       <header class="wrap" id="mt-top">
         <a class="brand" href="#mt-top" aria-label="Medicalt início">
-          <img src="assets/logo-medicalt.png" alt="" width="240" height="240">
-          <span>
-            <strong>
-              medicalt
-            </strong>
-            <small>
-              Serviços em Saúde
-            </small>
-          </span>
+          <img src="assets/logo-medicalt-suave.png" alt="Medicalt — Serviços em Saúde" width="1140" height="268">
         </a>
         <button class="menu-toggle" hidden type="button" aria-controls="main-nav" aria-expanded="false">
           Menu
@@ -49,18 +42,18 @@
           </span>
         </button>
         <nav id="main-nav" aria-label="Navegação principal">
-          <a href="#mt-about">
+          <button class="team-nav-trigger" type="button" aria-haspopup="dialog" aria-controls="about-dialog">
             Quem somos
-          </a>
+          </button>
           <a href="#mt-solutions">
             Serviços
           </a>
           <a href="#mt-specialties">
             Especialidades
           </a>
-          <a href="#mt-team">
+          <button class="team-nav-trigger" type="button" aria-haspopup="dialog" aria-controls="team-dialog">
             Equipe
-          </a>
+          </button>
           <a class="mobile-contact" href="#mt-contact">
             Contato
           </a>
@@ -93,56 +86,15 @@
                 Conheça nossos serviços ↓
               </a>
             </div>
-            <div class="hero-note">
-              <span class="brand-mark" aria-hidden="true">
-                +
-              </span>
-              Visão clínica e gestão, lado a lado.
-            </div>
           </div>
           <figure class="hero-visual">
-            <img class="hero-photo" src="assets/equipe-hospitalar.jpg" alt="Imagem ilustrativa de profissionais discutindo um caso em ambiente hospitalar" width="1050" height="700" fetchpriority="high">
+            <img class="hero-photo" src="assets/equipe-hospitalar-pexels.jpg" alt="Fotografia ilustrativa de dois profissionais de saúde conversando diante de um notebook" width="1500" height="1000" fetchpriority="high">
           </figure>
         </section>
-        <div class="ribbon wrap">
-          <div>
-            <span class="brand-mark" aria-hidden="true">
-              +
-            </span>
-            <span>
-              Corpo clínico
-              <small>
-                Seleção, integração e acompanhamento
-              </small>
-            </span>
-          </div>
-          <div>
-            <span class="brand-mark" aria-hidden="true">
-              +
-            </span>
-            <span>
-              UTI e centro cirúrgico
-              <small>
-                Estruturação de equipes e serviços
-              </small>
-            </span>
-          </div>
-          <div>
-            <span class="brand-mark" aria-hidden="true">
-              +
-            </span>
-            <span>
-              Desenvolvimento e tecnologia
-              <small>
-                Apoio à rotina hospitalar
-              </small>
-            </span>
-          </div>
-        </div>
         <section class="section about wrap" id="mt-about">
           <div class="about-heading">
             <div class="eyebrow">
-              01 / Quem somos
+              Quem somos
             </div>
             <h2>
               Visão clínica.
@@ -162,28 +114,46 @@
               começa nas pessoas.
             </h2>
             <p>
-              Nascemos em Goiás para aproximar a gestão de corpo clínico das necessidades reais dos hospitais.
+              A Medicalt nasceu em maio de 2023, em Goiás, a partir da iniciativa de um grupo de médicos plantonistas que dividiam a mesma rotina e os mesmos desafios. Hoje levamos essa experiência para hospitais de média e alta complexidade, formando equipes sólidas, com gestão transparente e cuidado contínuo.
             </p>
-            <p>
-              Mais do que disponibilizar profissionais, construímos equipes assistenciais sólidas. Unimos qualidade técnica, perfil humano e integração para apoiar uma assistência mais segura, eficiente e consistente.
-            </p>
-            <div class="principles">
-              <span>
-                Rigor técnico
-              </span>
-              <span>
-                Gestão próxima
-              </span>
-              <span>
-                Relações duradouras
-              </span>
+          </div>
+        </section>
+        <section class="institutions" id="mt-institutions" aria-labelledby="institutions-title">
+          <div class="institutions-heading wrap">
+            <h2 id="institutions-title">Instituições <span class="wine-text">atendidas</span></h2>
+            <p class="institutions-intro">Nossa experiência se constrói na rotina das instituições que atendemos.</p>
+          </div>
+          <div class="institutions-marquee" id="institutions-marquee" data-carousel-enabled="true" role="region" aria-label="Instituições atendidas">
+            <div class="institutions-track">
+              <ul class="institutions-list">
+                <li>
+                  <div class="institution-logo"><img src="assets/institutions/santa-rosa.svg" alt="Logo do Hospital Santa Rosa" width="1600" height="568" loading="lazy"></div>
+                  <h3>Hospital Santa Rosa</h3>
+                  <p>Goiânia · GO</p>
+                </li>
+                <li>
+                  <div class="institution-logo"><img src="assets/institutions/sao-francisco-de-assis.svg" alt="Logo do Hospital São Francisco de Assis" width="1930" height="685" loading="lazy"></div>
+                  <h3>Hospital São Francisco de Assis</h3>
+                  <p>Goiânia · GO</p>
+                </li>
+                <li>
+                  <div class="institution-logo"><img src="assets/institutions/ruy-azeredo.svg" alt="Logo do Hospital Ruy Azeredo" width="1989" height="750" loading="lazy"></div>
+                  <h3>Hospital Ruy Azeredo</h3>
+                  <p>Goiânia · GO</p>
+                </li>
+                <li>
+                  <div class="institution-logo"><div class="institution-logo-encore"><img src="assets/institutions/encore.webp" alt="Logo do Hospital Encore" width="1024" height="480" loading="lazy"></div></div>
+                  <h3>Hospital Encore</h3>
+                  <p>Aparecida de Goiânia · GO</p>
+                </li>
+              </ul>
             </div>
           </div>
         </section>
         <section class="solutions wrap" id="mt-solutions">
           <div>
             <div class="eyebrow">
-              02 / Nossos serviços
+              Nossos serviços
             </div>
             <h2>
               O cuidado exige integração.
@@ -195,9 +165,10 @@
             </p>
             <a class="light-link" href="#mt-contact">
               Converse sobre sua necessidade
-              <span aria-hidden="true">
-                ↗
-              </span>
+              <svg class="contact-link-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+                <rect x="3" y="5" width="18" height="14" rx="2"></rect>
+                <path d="m3 6 9 7 9-7"></path>
+              </svg>
             </a>
             <p class="solution-note">
               Protocolos, acompanhamento da qualidade e eficiência operacional atravessam nossa atuação.
@@ -205,9 +176,6 @@
           </div>
           <div>
             <article class="solution-row">
-              <span>
-                01
-              </span>
               <div>
                 <h3>
                   Gestão de corpo clínico
@@ -218,9 +186,6 @@
               </div>
             </article>
             <article class="solution-row">
-              <span>
-                02
-              </span>
               <div>
                 <h3>
                   Estruturação de UTI
@@ -231,9 +196,6 @@
               </div>
             </article>
             <article class="solution-row">
-              <span>
-                03
-              </span>
               <div>
                 <h3>
                   Estruturação de centro cirúrgico
@@ -243,12 +205,10 @@
                 </p>
               </div>
             </article>
+            <button class="services-trigger" id="services-open" type="button" aria-haspopup="dialog" aria-controls="services-dialog"><span>Ver mais serviços</span><b aria-hidden="true">+</b></button>
             <details class="services-more" open>
               <summary><span class="more-label">Ver mais serviços</span><span class="less-label">Ver menos serviços</span><b aria-hidden="true">+</b></summary>
               <article class="solution-row">
-                <span>
-                  04
-                </span>
                 <div>
                   <h3>
                     Fisioterapia hospitalar
@@ -259,9 +219,6 @@
                 </div>
               </article>
               <article class="solution-row">
-                <span>
-                  05
-                </span>
                 <div>
                   <h3>
                     Educação continuada
@@ -272,9 +229,6 @@
                 </div>
               </article>
               <article class="solution-row">
-                <span>
-                  06
-                </span>
                 <div>
                   <h3>
                     Soluções tecnológicas
@@ -290,7 +244,7 @@
         <section class="section expertise wrap" id="mt-specialties">
           <div>
             <div class="eyebrow">
-              03 / Especialidades
+              Especialidades
             </div>
             <h2>
               Conhecimento técnico.
@@ -306,9 +260,6 @@
           <div class="accordion">
             <details open>
               <summary>
-                <span>
-                  01
-                </span>
                 Medicina Intensiva
                 <b aria-hidden="true">
                   +
@@ -320,9 +271,6 @@
             </details>
             <details>
               <summary>
-                <span>
-                  02
-                </span>
                 Cirurgia Vascular
                 <b aria-hidden="true">
                   +
@@ -334,9 +282,6 @@
             </details>
             <details>
               <summary>
-                <span>
-                  03
-                </span>
                 Cirurgia Geral
                 <b aria-hidden="true">
                   +
@@ -348,9 +293,17 @@
             </details>
             <details>
               <summary>
-                <span>
-                  04
-                </span>
+                Neurologia
+                <b aria-hidden="true">
+                  +
+                </b>
+              </summary>
+              <p>
+                Avaliação e acompanhamento de doenças do cérebro, da medula e dos nervos periféricos, com atuação integrada à assistência hospitalar.
+              </p>
+            </details>
+            <details>
+              <summary>
                 Fisioterapia Hospitalar
                 <b aria-hidden="true">
                   +
@@ -364,7 +317,7 @@
         </section>
         <section class="section process wrap" id="mt-process">
           <div class="eyebrow">
-            04 / Como atuamos
+            Como atuamos
           </div>
           <h2>
             Da primeira conversa
@@ -374,7 +327,7 @@
           <div class="steps">
             <article class="step">
               <span>
-                01 / ENTENDER
+                ENTENDER
               </span>
               <h3>
                 O contexto do hospital
@@ -385,7 +338,7 @@
             </article>
             <article class="step">
               <span>
-                02 / ESTRUTURAR
+                ESTRUTURAR
               </span>
               <h3>
                 A equipe e o serviço
@@ -396,7 +349,7 @@
             </article>
             <article class="step">
               <span>
-                03 / ACOMPANHAR
+                ACOMPANHAR
               </span>
               <h3>
                 A operação de perto
@@ -407,7 +360,7 @@
             </article>
             <article class="step">
               <span>
-                04 / DESENVOLVER
+                DESENVOLVER
               </span>
               <h3>
                 A melhoria contínua
@@ -421,7 +374,7 @@
         <section class="section team wrap" id="mt-team">
           <div>
             <div class="eyebrow">
-              05 / Nossa equipe
+              Nossa equipe
             </div>
             <h2>
               Por trás da gestão,
@@ -439,14 +392,14 @@
               Conheça os profissionais que fazem parte da Medicalt e suas áreas de atuação.
             </p>
             <button class="text-link team-trigger" id="team-open" type="button" aria-haspopup="dialog" aria-controls="team-dialog">
-              Conheça nossa equipe <span aria-hidden="true">↗</span>
+              Conheça nossa equipe
             </button>
           </div>
         </section>
         <section class="section contact wrap" id="mt-contact">
           <div>
             <div class="eyebrow">
-              06 / Vamos conversar
+              Vamos conversar
             </div>
             <h2>
               O que sua instituição
@@ -503,39 +456,84 @@
               </select>
             </label>
             <button class="cta" id="contact-submit" type="submit">
-              Enviar mensagem <span aria-hidden="true">↗</span>
+              Enviar mensagem
             </button>
             <p class="form-note" id="contact-status">
-              Ao enviar, seus dados serão encaminhados à Medicalt pelo FormSubmit para responder ao contato. Não inclua dados de pacientes.
+              Seus dados serão encaminhados à Medicalt pelo FormSubmit para responder ao contato. Não inclua dados de pacientes.
             </p>
             <p aria-atomic="true" aria-live="polite" class="message" id="form-message" role="status"></p>
           </form>
         </section>
       </main>
+      <dialog class="team-dialog about-dialog" id="about-dialog" aria-labelledby="about-dialog-title" aria-describedby="about-dialog-intro">
+        <div class="team-dialog-heading">
+          <button class="team-close" id="about-close" type="button" aria-label="Fechar apresentação da Medicalt" autofocus><span aria-hidden="true">×</span></button>
+          <p class="eyebrow">Medicalt</p>
+          <h2 id="about-dialog-title">Quem <span class="wine-text">somos</span></h2>
+          <p id="about-dialog-intro">Conheça nossa história</p>
+        </div>
+        <div class="team-dialog-list about-dialog-list" tabindex="0" role="region" aria-label="História e atuação da Medicalt">
+          <section class="about-dialog-section">
+            <h3>Nossa História</h3>
+            <p>A Medicalt foi fundada em maio de 2023, em Goiás, por iniciativa de um grupo de médicos: Daniel, Marcelo, Aline, Mariene e o eterno Arnaldo Zambrana, que, lamentavelmente, nos deixou. Atuando como plantonistas na mesma instituição hospitalar, os fundadores identificaram desafios comuns na organização e na condução das equipes assistenciais e convergiram quanto à forma como esses desafios deveriam ser enfrentados. Dessa convergência de convicções surgiu a Medicalt.</p>
+          </section>
+          <section class="about-dialog-section">
+            <h3>Sobre nós</h3>
+            <p>Somos uma empresa especializada na gestão do corpo clínico e na estruturação de serviços hospitalares, com atuação voltada a instituições de média e alta complexidade. Nossa origem na prática assistencial nos confere conhecimento direto da rotina hospitalar e das exigências de uma assistência segura, eficiente e contínua.</p>
+            <p>Compreendemos que a qualidade da assistência decorre da qualificação e da integração das pessoas que a prestam. Por essa razão, nossa atuação não se restringe à disponibilização de profissionais: dedicamo-nos à formação de equipes assistenciais sólidas, que reúnem excelência técnica, conduta ética e comprometimento com o cuidado.</p>
+          </section>
+          <section class="about-dialog-section">
+            <h3>Metodologia</h3>
+            <p>Cada instituição possui características próprias. Nossa atuação inicia-se pela compreensão de seu contexto, de seus fluxos e de suas necessidades, seguindo-se a estruturação da equipe e do serviço, o acompanhamento da operação e o aprimoramento contínuo dos protocolos e da qualidade assistencial.</p>
+          </section>
+          <section class="about-dialog-section">
+            <h3>Missão</h3>
+            <p>Apoiar instituições de saúde por meio de equipes assistenciais qualificadas e de uma gestão próxima e responsável, contribuindo para uma assistência mais segura, eficiente e consistente.</p>
+          </section>
+        </div>
+      </dialog>
+      <dialog class="team-dialog services-dialog" id="services-dialog" aria-labelledby="services-dialog-title" aria-describedby="services-dialog-intro">
+        <div class="team-dialog-heading">
+          <button class="team-close" id="services-close" type="button" aria-label="Fechar apresentação dos serviços" autofocus><span aria-hidden="true">×</span></button>
+          <p class="eyebrow">Nossos serviços</p>
+          <h2 id="services-dialog-title">Soluções para <span class="wine-text">seu hospital</span></h2>
+          <p id="services-dialog-intro">Conheça os seis serviços da Medicalt.</p>
+        </div>
+        <div class="team-dialog-list services-dialog-list" tabindex="0" role="region" aria-label="Serviços da Medicalt">
+          <article class="service-card">
+            <h3>Gestão de corpo clínico</h3>
+            <p>Seleção, alocação e acompanhamento de profissionais, com atenção ao perfil técnico, à integração da equipe e à rotina da instituição.</p>
+          </article>
+          <article class="service-card">
+            <h3>Estruturação de UTI</h3>
+            <p>Organização de equipes, fluxos e protocolos para apoiar a operação da Unidade de Terapia Intensiva.</p>
+          </article>
+          <article class="service-card">
+            <h3>Estruturação de centro cirúrgico</h3>
+            <p>Apoio à estruturação do serviço e à integração entre profissionais, processos e rotina cirúrgica.</p>
+          </article>
+          <article class="service-card">
+            <h3>Fisioterapia hospitalar</h3>
+            <p>Seleção e gestão de equipes de fisioterapia integradas à assistência em ambientes de média e alta complexidade.</p>
+          </article>
+          <article class="service-card">
+            <h3>Educação continuada</h3>
+            <p>Atualização e desenvolvimento técnico das equipes, conectados às necessidades do serviço hospitalar.</p>
+          </article>
+          <article class="service-card">
+            <h3>Soluções tecnológicas</h3>
+            <p>Soluções para apoiar a gestão e a organização do ambiente hospitalar. O escopo é definido a partir das necessidades da instituição.</p>
+          </article>
+        </div>
+      </dialog>
       <dialog class="team-dialog" id="team-dialog" aria-labelledby="team-dialog-title" aria-describedby="team-dialog-intro">
         <div class="team-dialog-heading">
           <button class="team-close" id="team-close" type="button" aria-label="Fechar apresentação da equipe" autofocus><span aria-hidden="true">×</span></button>
-          <p class="eyebrow">05 / Nossa equipe</p>
+          <p class="eyebrow">Nossa equipe</p>
           <h2 id="team-dialog-title">Conheça <span class="wine-text">nossa equipe</span></h2>
           <p id="team-dialog-intro">Profissionais dedicados ao cuidado, à segurança e ao bem-estar de cada paciente.</p>
         </div>
         <div class="team-dialog-list" tabindex="0" role="region" aria-label="Profissionais da Medicalt">
-          <article class="team-card">
-            <span class="team-avatar" aria-hidden="true">JG</span>
-            <div class="team-card-copy">
-              <h3>João Alcindo Vicente Graciano Neto</h3>
-              <p class="team-specialty">Medicina intensiva</p>
-              <p class="team-registration">CRM 33546/GO</p>
-            </div>
-          </article>
-          <article class="team-card">
-            <span class="team-avatar" aria-hidden="true">MA</span>
-            <div class="team-card-copy">
-              <h3>Mariene Rodrigues Amorim</h3>
-              <p class="team-specialty">Medicina intensiva</p>
-              <p class="team-registration">CRM 13991/GO</p>
-            </div>
-          </article>
           <article class="team-card">
             <span class="team-avatar" aria-hidden="true">MN</span>
             <div class="team-card-copy">
@@ -545,43 +543,11 @@
             </div>
           </article>
           <article class="team-card">
-            <span class="team-avatar" aria-hidden="true">IL</span>
-            <div class="team-card-copy">
-              <h3>Isabella Cristina de Oliveira Lobo Lopes</h3>
-              <p class="team-specialty">Cirurgia geral</p>
-              <p class="team-registration">CRM 33023/GO</p>
-            </div>
-          </article>
-          <article class="team-card">
             <span class="team-avatar" aria-hidden="true">JD</span>
             <div class="team-card-copy">
               <h3>Jim Davis de Oliveira</h3>
-              <p class="team-specialty">Cirurgia geral</p>
+              <p class="team-specialty">Cardiologia</p>
               <p class="team-registration">CRM 21884/GO</p>
-            </div>
-          </article>
-          <article class="team-card">
-            <span class="team-avatar" aria-hidden="true">DC</span>
-            <div class="team-card-copy">
-              <h3>Daniel Couto Filho</h3>
-              <p class="team-specialty">Medicina intensiva</p>
-              <p class="team-registration">CRM 26894/GO</p>
-            </div>
-          </article>
-          <article class="team-card">
-            <span class="team-avatar" aria-hidden="true">CS</span>
-            <div class="team-card-copy">
-              <h3>Cristiane Cândida da Silva</h3>
-              <p class="team-specialty">Fisioterapia</p>
-              <p class="team-registration">CREFITO 248425-F</p>
-            </div>
-          </article>
-          <article class="team-card">
-            <span class="team-avatar" aria-hidden="true">MB</span>
-            <div class="team-card-copy">
-              <h3>Mayara Baliza Ferreira</h3>
-              <p class="team-specialty">Fisioterapia</p>
-              <p class="team-registration">CREFITO 283245-F</p>
             </div>
           </article>
           <article class="team-card">
@@ -593,10 +559,66 @@
             </div>
           </article>
           <article class="team-card">
+            <span class="team-avatar" aria-hidden="true">IL</span>
+            <div class="team-card-copy">
+              <h3>Isabella Cristina de Oliveira Lobo Lopes</h3>
+              <p class="team-specialty">Cirurgia geral</p>
+              <p class="team-registration">CRM 33023/GO</p>
+            </div>
+          </article>
+          <article class="team-card">
+            <span class="team-avatar" aria-hidden="true">AF</span>
+            <div class="team-card-copy">
+              <h3>Aline Boaventura Ferreira</h3>
+              <p class="team-specialty">Neurologia</p>
+              <p class="team-registration">CRM 26979/GO</p>
+            </div>
+          </article>
+          <article class="team-card">
+            <span class="team-avatar" aria-hidden="true">CS</span>
+            <div class="team-card-copy">
+              <h3>Cristiane Cândida da Silva</h3>
+              <p class="team-specialty">Fisioterapia</p>
+              <p class="team-registration">CREFITO 248425-F</p>
+            </div>
+          </article>
+          <article class="team-card">
+            <span class="team-avatar" aria-hidden="true">JG</span>
+            <div class="team-card-copy">
+              <h3>João Alcindo Vicente Graciano Neto</h3>
+              <p class="team-specialty">Medicina Intensiva</p>
+              <p class="team-registration">CRM 33546/GO</p>
+            </div>
+          </article>
+          <article class="team-card">
+            <span class="team-avatar" aria-hidden="true">DC</span>
+            <div class="team-card-copy">
+              <h3>Daniel Couto Filho</h3>
+              <p class="team-specialty">Medicina Intensiva</p>
+              <p class="team-registration">CRM 26894/GO</p>
+            </div>
+          </article>
+          <article class="team-card">
+            <span class="team-avatar" aria-hidden="true">MB</span>
+            <div class="team-card-copy">
+              <h3>Mayara Baliza Ferreira</h3>
+              <p class="team-specialty">Fisioterapia</p>
+              <p class="team-registration">CREFITO 283245-F</p>
+            </div>
+          </article>
+          <article class="team-card">
+            <span class="team-avatar" aria-hidden="true">MA</span>
+            <div class="team-card-copy">
+              <h3>Mariene Rodrigues Amorim</h3>
+              <p class="team-specialty">Medicina Intensiva</p>
+              <p class="team-registration">CRM 13991/GO</p>
+            </div>
+          </article>
+          <article class="team-card">
             <span class="team-avatar" aria-hidden="true">MC</span>
             <div class="team-card-copy">
               <h3>Maria Eduarda Castro Ferreira de Siqueira</h3>
-              <p class="team-specialty">Especialidade não informada</p>
+              <p class="team-specialty">Medicina Intensiva</p>
               <p class="team-registration">CRM 33520/GO</p>
             </div>
           </article>
@@ -604,7 +626,7 @@
             <span class="team-avatar" aria-hidden="true">ÉJ</span>
             <div class="team-card-copy">
               <h3>Écio José Rodrigues da Silva</h3>
-              <p class="team-specialty">Especialidade não informada</p>
+              <p class="team-specialty">Medicina Intensiva</p>
               <p class="team-registration">CRM 31117/GO</p>
             </div>
           </article>
@@ -612,22 +634,14 @@
       </dialog>
       <footer class="wrap">
         <a class="brand" href="#mt-top">
-          <img alt="" height="240" src="assets/logo-medicalt.png" width="240"/>
-          <span>
-            <strong>
-              medicalt
-            </strong>
-            <small>
-              Serviços em Saúde
-            </small>
-          </span>
+          <img src="assets/logo-medicalt-suave.png" alt="Medicalt — Serviços em Saúde" width="1140" height="268">
         </a>
         <p>
           Gestão presente. Cuidado que evolui.
           <br/>
           ©
           <span id="current-year">
-            2026
+            2024
           </span>
           Medicalt Serviços em Saúde.
         </p>

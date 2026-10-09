@@ -27,7 +27,8 @@
     }
   });
   document.addEventListener('keydown', (event) => {
-    if (event.key === 'Escape' && mobile.matches && !navigation.hidden) {
+    if (event.key === 'Escape' && mobile.matches && !navigation.hidden
+      && !document.querySelector('dialog[open]')) {
       setMenu(false);
       menuButton.focus();
     }
@@ -67,7 +68,5 @@
     document.fonts?.ready.then(syncHeroActions);
   }
 
-  document.getElementById('current-year').textContent = String(
-    new Date().getFullYear(),
-  );
+  document.getElementById('current-year').textContent = '2024';
 })();
